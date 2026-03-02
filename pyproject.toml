@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mcp-x"
+version = "0.1.0"
+description = "One command to turn any CLI tool or REST API into an MCP server for Claude"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+keywords = ["mcp", "claude", "ai", "developer-tools", "cli"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "mcp>=1.0.0",
+    "click>=8.0.0",
+    "httpx>=0.27.0",
+    "anthropic>=0.40.0",
+    "uvicorn>=0.30.0",
+    "starlette>=0.40.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0.0", "pytest-cov", "pytest-asyncio", "black", "isort", "mypy", "flake8"]
+
+[project.scripts]
+mcp-x = "mcp_x.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mcp_x"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "--cov=src/mcp_x --cov-report=term-missing"
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+
+[tool.black]
+line-length = 88
+
+[tool.isort]
+profile = "black"
