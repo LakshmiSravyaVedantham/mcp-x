@@ -21,8 +21,6 @@ def load_openapi_spec(target: str) -> dict:  # type: ignore[type-arg]
 
             return yaml.safe_load(path.read_text())  # type: ignore[no-any-return]
         except ImportError:
-            raise ImportError(
-                "Install PyYAML to load YAML specs: pip install pyyaml"
-            )
+            raise ImportError("Install PyYAML to load YAML specs: pip install pyyaml")
 
     return json.loads(path.read_text())  # type: ignore[no-any-return]

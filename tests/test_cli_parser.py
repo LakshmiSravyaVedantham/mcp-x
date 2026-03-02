@@ -1,4 +1,4 @@
-from mcp_x.parsers.cli import parse_cli_help, ToolDefinition
+from mcp_x.parsers.cli import ToolDefinition, parse_cli_help
 
 FAKE_HELP = """
 usage: git [-v | --version] [-h | --help] <command> [<args>]

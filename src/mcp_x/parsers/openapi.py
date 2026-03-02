@@ -1,4 +1,5 @@
 """OpenAPI spec parser — extracts endpoints as MCP ToolDefinitions."""
+
 from mcp_x.parsers.cli import ToolDefinition
 
 
@@ -29,17 +30,12 @@ def parse_openapi_spec(spec: dict) -> list[ToolDefinition]:
             op_id = operation.get("operationId")
             if not op_id:
                 clean = (
-                    path.strip("/")
-                    .replace("/", "_")
-                    .replace("{", "")
-                    .replace("}", "")
+                    path.strip("/").replace("/", "_").replace("{", "").replace("}", "")
                 )
                 op_id = f"{method}_{clean}"
 
             description = (
-                operation.get("summary")
-                or operation.get("description")
-                or op_id
+                operation.get("summary") or operation.get("description") or op_id
             )
 
             # Collect query/path/header parameters

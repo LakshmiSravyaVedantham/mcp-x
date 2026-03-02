@@ -24,6 +24,7 @@ def enhance_tools(
     if client is None:
         try:
             import anthropic
+
             client = anthropic.Anthropic()
         except Exception:
             return tools

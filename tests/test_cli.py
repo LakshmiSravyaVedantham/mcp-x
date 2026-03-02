@@ -1,4 +1,5 @@
 from click.testing import CliRunner
+
 from mcp_x.cli import main
 
 
@@ -13,7 +14,11 @@ def test_list_command_with_no_servers():
     runner = CliRunner()
     result = runner.invoke(main, ["list"])
     assert result.exit_code == 0
-    assert "no" in result.output.lower() or "registered" in result.output.lower() or result.output.strip() == ""
+    assert (
+        "no" in result.output.lower()
+        or "registered" in result.output.lower()
+        or result.output.strip() == ""
+    )
 
 
 def test_run_requires_target():

@@ -1,7 +1,8 @@
 import json
 import tempfile
 from pathlib import Path
-from mcp_x.config import register_server, unregister_server, list_servers
+
+from mcp_x.config import list_servers, register_server, unregister_server
 
 
 def test_register_creates_entry(tmp_path):
@@ -21,7 +22,9 @@ def test_register_sets_url(tmp_path):
 
 def test_register_preserves_existing(tmp_path):
     config_file = tmp_path / ".claude.json"
-    config_file.write_text(json.dumps({"mcpServers": {"existing": {"url": "http://localhost:9000"}}}))
+    config_file.write_text(
+        json.dumps({"mcpServers": {"existing": {"url": "http://localhost:9000"}}})
+    )
     register_server("git", 8742, config_path=config_file)
     data = json.loads(config_file.read_text())
     assert "existing" in data["mcpServers"]

@@ -27,7 +27,9 @@ def main() -> None:
 @click.argument("target")
 @click.option("--port", default=0, help="Port to run on (default: auto)")
 @click.option("--no-llm", is_flag=True, help="Skip Claude schema enhancement")
-@click.option("--eject", is_flag=True, help="Print generated schemas instead of running server")
+@click.option(
+    "--eject", is_flag=True, help="Print generated schemas instead of running server"
+)
 def run(target: str, port: int, no_llm: bool, eject: bool) -> None:
     """Turn TARGET (CLI tool or OpenAPI URL/file) into an MCP server."""
     try:
@@ -79,7 +81,9 @@ def run(target: str, port: int, no_llm: bool, eject: bool) -> None:
     app = build_mcp_app(tool_name, tools)
 
     register_server(tool_name, actual_port)
-    click.echo(f"\n{tool_name} ({len(tools)} tools) available to Claude on :{actual_port}")
+    click.echo(
+        f"\n{tool_name} ({len(tools)} tools) available to Claude on :{actual_port}"
+    )
     click.echo("Auto-registered in ~/.claude.json")
     click.echo("Press Ctrl+C to stop.\n")
 
@@ -100,7 +104,9 @@ def run(target: str, port: int, no_llm: bool, eject: bool) -> None:
                 )
 
         starlette_app = Starlette(routes=[Route("/sse", endpoint=handle_sse)])
-        uvicorn.run(starlette_app, host="localhost", port=actual_port, log_level="warning")
+        uvicorn.run(
+            starlette_app, host="localhost", port=actual_port, log_level="warning"
+        )
     except KeyboardInterrupt:
         pass
     finally:

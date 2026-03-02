@@ -1,5 +1,6 @@
 import pytest
-from mcp_x.parsers.openapi import parse_openapi_spec, ToolDefinition
+
+from mcp_x.parsers.openapi import ToolDefinition, parse_openapi_spec
 
 MINIMAL_SPEC = {
     "openapi": "3.0.0",
@@ -58,11 +59,7 @@ def test_fallback_name_without_operation_id():
     spec = {
         "openapi": "3.0.0",
         "info": {"title": "T", "version": "1"},
-        "paths": {
-            "/items": {
-                "get": {"summary": "List items"}
-            }
-        },
+        "paths": {"/items": {"get": {"summary": "List items"}}},
     }
     tools = parse_openapi_spec(spec)
     assert len(tools) == 1

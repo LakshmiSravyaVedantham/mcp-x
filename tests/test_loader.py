@@ -1,8 +1,10 @@
 import json
-import pytest
 import tempfile
 from pathlib import Path
-from unittest.mock import patch, MagicMock
+from unittest.mock import MagicMock, patch
+
+import pytest
+
 from mcp_x.loader import load_openapi_spec
 
 

@@ -1,6 +1,7 @@
 import socket
-from mcp_x.server import find_free_port, build_mcp_app
+
 from mcp_x.parsers.cli import ToolDefinition
+from mcp_x.server import build_mcp_app, find_free_port
 
 
 def test_find_free_port_returns_int():

@@ -1,7 +1,6 @@
 import json
 from pathlib import Path
 
-
 DEFAULT_CONFIG = Path.home() / ".claude.json"
 PREFIX = "mcp-x-"
 
@@ -47,7 +46,5 @@ def list_servers(config_path: Path = DEFAULT_CONFIG) -> dict[str, str]:
     data = _load(config_path)
     servers = data.get("mcpServers", {})
     return {
-        k[len(PREFIX):]: v["url"]
-        for k, v in servers.items()
-        if k.startswith(PREFIX)
+        k[len(PREFIX) :]: v["url"] for k, v in servers.items() if k.startswith(PREFIX)
     }

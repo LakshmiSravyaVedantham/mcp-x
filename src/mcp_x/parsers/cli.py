@@ -1,4 +1,5 @@
 """CLI help text parser — extracts subcommands as MCP ToolDefinitions."""
+
 import re
 import subprocess
 from dataclasses import dataclass, field
@@ -6,9 +7,9 @@ from dataclasses import dataclass, field
 
 @dataclass
 class ToolDefinition:
-    name: str                          # e.g. "git_clone"
-    description: str                   # human-readable
-    command: list[str]                 # e.g. ["git", "clone"]
+    name: str  # e.g. "git_clone"
+    description: str  # human-readable
+    command: list[str]  # e.g. ["git", "clone"]
     parameters: dict[str, str] = field(default_factory=dict)
 
 

@@ -1,5 +1,6 @@
 import pytest
-from mcp_x.detector import detect_input_type, InputType
+
+from mcp_x.detector import InputType, detect_input_type
 
 
 def test_detects_cli_tool():
@@ -15,7 +16,9 @@ def test_detects_local_openapi_yaml():
 
 
 def test_detects_http_url():
-    assert detect_input_type("https://api.example.com/openapi.json") == InputType.OPENAPI
+    assert (
+        detect_input_type("https://api.example.com/openapi.json") == InputType.OPENAPI
+    )
 
 
 def test_detects_http_url_no_extension():
